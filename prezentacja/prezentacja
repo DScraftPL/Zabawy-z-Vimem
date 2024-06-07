@@ -129,7 +129,15 @@ Colorscheme
 Zbiór: https://github.com/topics/neovim-colorscheme
 https://github.com/folke/tokyonight.nvim
 
-Mason
+.config/nvim/lua/plugins
+Lazy automatycznie ładuje pliki .lua z folderu plugins
+require("lazy").setup("plugins")
+
+LspConfig
+https://github.com/neovim/nvim-lspconfig
+:LspInfo
+
+Mason 
 https://github.com/williamboman/mason.nvim
 :Mason 
 

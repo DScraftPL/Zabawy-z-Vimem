@@ -2,7 +2,7 @@ $ sudo apt install vim neovim
 $ vim <nazwa pliku>
 $ nvim <nazwa pliku>
 
-Aby zainstalować najnowszą wersje VIMa (ubuntu napewno nie ma najnowszej)
+Aby zainstalować najnowszą wersje neovima (ubuntu napewno nie ma najnowszej)
 $ curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 $ sudo rm -rf /opt/nvim
 $ sudo tar -C /opt -xzf nvim-linux64.tar.gz
@@ -50,21 +50,22 @@ yy - skopiuj całą linię
 >> - tab w lewo
 << - tab w prawo
 
-proces kopiowania/wycinania:
+Proces kopiowania/wycinania:
 1. zaznacz fragment pliku używająć trybu Visual (V/Ctrl + V)
 2. aby skopiować zaznaczony fragment naciśnij y, aby wyciąć naciśnij x
 3. aby wkleić tekst, wyjdź z trybu Visual (ESC), następnie aby:
 wkleić po kursorze, nacisnij p, 
 wkleić przed kursorem, naciśnij P (shift + P),
 
-wyszukiwanie tekstu:
+Wyszukiwanie tekstu:
 1. /<szukana fraza> (przeszukuje w przód) ?<szukana fraza> (przeszukuje w tył) 
 2. aby znaleźć kolejne wystąpienie, nacisnij n
 3. aby znaleźć poprzednie wystąpienie, nacisnij N (shift + n)
-bonus: można najechać na słowo, naciśnięcie */# spowoduje automatyczne znalezienie kolejnego wystąpienia w przód/tył
+bonus: można najechać na słowo, 
+naciśnięcie */# spowoduje automatyczne znalezienie kolejnego wystąpienia w przód/tył
 bonus: :set ignorecase spowoduje ignorowanie dużych liter
 
-wyszukaj i zamień: 
+Wyszukaj i zamień: 
 już nie tak prosto, trzeba przerobić regex: 
 :[range]s/{pattern}/{string}/[flags] [count]
 vim przeszukuje wszystkie linie z [range] (range: 0,20 przeszuka tylko linie od 0 do 20, 
@@ -74,6 +75,7 @@ w poszukiwaniu wzorca {pattern} i zmieni go na {string}
 [flags] odpowiada a flagi, przykładowo flaga g spowoduje zmianę wszystkich słów w linii
 flaga c powoduje wymaganie potwierdzenia zmiany 
 
+Buffer:
 buffer - plik otwarty do edycji, VIM przechowuje je w pamięci, kiedy otwieramy nowe. 
 :e <nazwa pliku> - tworzy nowy buffer i ustawia go jako aktywny
 :badd <nazwa pliku> - tworzy nowy buffer, ale tworzy go w tle
@@ -88,15 +90,9 @@ buffer - plik otwarty do edycji, VIM przechowuje je w pamięci, kiedy otwieramy 
 :vsplit <nazwa pliku>/:vs <nazwa pliku> - dzieli ekran wertykalnie, otwierając plik w nowym bufferze
 :ls/:files/:buffers - sprawdź otwarte pliki (buffery)
 flagi bufferów: 
-	% - buffer otwarty
-	a - buffer aktywny
-	# - buffer ostatnio edytowany
-
-@MODERPROBLEMS.jpeg
-
-Wsparcie TreeSittera 
-Wspracie LSP 
-Skrypty w lua, nie vimscript
+% - buffer otwarty
+a - buffer aktywny
+# - buffer ostatnio edytowany
 
 plik konfiguracyjny:
 ~/.config/nvim/init.lua
@@ -106,42 +102,40 @@ Manager Pluginów:
 https://github.com/folke/lazy.nvim
 :Lazy
 
-require("lazy").setup(plugins, opts)
-w tej linii dodajemy pluginy
-require("lazy").setup({{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"}})
-
 Drzewko projektu:
 https://github.com/nvim-tree/nvim-tree.lua
 :NvimTreeOpen
 :NvimTreeClose
 
-Keystroki,
+Keystrokes:
 https://neovim.io/doc/user/map.html
 
-Telescope
+Wyszukiawanie w projekcie:
 https://github.com/nvim-telescope/telescope.nvim
 :Telescope
 :Telescope find_files
 :Telescope buffers
 :Telescope live_grep
 
-Colorscheme
+Kolory:
 Zbiór: https://github.com/topics/neovim-colorscheme
 https://github.com/folke/tokyonight.nvim
 
+Struktura pluginow:
 .config/nvim/lua/plugins
 Lazy automatycznie ładuje pliki .lua z folderu plugins
 require("lazy").setup("plugins")
 
-LspConfig
+Language Server Provider:
 https://github.com/neovim/nvim-lspconfig
 :LspInfo
 
-Mason 
+Instalator LSP:
 https://github.com/williamboman/mason.nvim
 :Mason 
 
-clang <3
+https://www.lunarvim.org/
+https://nvchad.com/
+http://www.lazyvim.org/
 
-
-
+https://github.com/rockerBOO/awesome-neovim

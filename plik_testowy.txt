@@ -15,6 +15,28 @@ else {
 	print("hello world");
 }
 
+for(let i=0; i<10; i++){
+	if(i===0){
+		return 0;
+	}
+}
+
+while(x > 0){
+	return 0;
+	if(x==0){
+		return 1;
+	}
+}
+
+prolog(tak, nie).
+prologer(tak, tak, nie).
+regula(tak, nie).
+
+<html>
+<body></body>
+<head></head>
+</html>
+
 #odkomentuj
 # odkomentuj tez to
 
@@ -33,4 +55,6 @@ CBI PORTB, 2
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec ante non turpis sollicitudin consequat sed quis urna. Phasellus congue lorem ut libero congue, quis fermentum risus venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Curabitur in dolor mauris. Suspendisse eu tincidunt purus. Aliquam et vestibulum nisl, vel varius sapien. Aenean venenatis velit eu ligula ultrices, et ultricies dolor tempus. Aliquam mi velit, lobortis eu egestas a, placerat quis libero. Sed odio neque, iaculis sit amet tincidunt non, rutrum eu lectus. Fusce aliquam luctus enim ac consequat. Morbi ante augue, tincidunt a est ac, lacinia tristique nisi. Nam tristique neque nec lectus commodo, ut venenatis lorem viverra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
 
-
+github.com
+cs.pollub.pl
+moodle3.cs.pollub.pl

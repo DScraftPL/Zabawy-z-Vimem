@@ -1,0 +1,112 @@
+#1 Vim, Neovim, jak zainstalować, jakie zą rożnice?
+
+VIM 1991 rok, ostatnia wersja stabilna z 2 stycznia 2024 roku, 5 najpopularniejszy edytor tekstowy (na 2019 rok). 
+
+$ sudo apt install vim neovim
+$ vim <nazwa pliku>
+$ nvim <nazwa pliku>
+
+Aby zainstalować najnowszą wersje VIMa (ubuntu napewno nie ma najnowszej)
+$ curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+$ sudo rm -rf /opt/nvim
+$ sudo tar -C /opt -xzf nvim-linux64.tar.gz
+po wykonaniu trzeba dodać ściężkę do .bashrc:
+export PATH="$PATH:/opt/nvim-linux64/bin"
+(flathub ma wersję najnowszą, arch linux, fedora też)
+https://github.com/neovim/neovim/blob/master/INSTALL.md
+
+
+Tryby:
+	Normal - tryb domyślny (ESC), używany do komend edytora (dd, x)
+	Insert - tryb wpisywania (i/a/o), służy do wpisywania tekstu jak w wkażdym innym edytorze tekstu
+		i - tryb wpisywania przed kursorem
+		a - tryb wpisywania po kursorze
+		o - stworz nową linie i wlacz tryb wpisywania
+	Visual - tryb zaznaczania obszarów tekstu: 2 główne sposoby zaznaczania 
+	Visual linewise - zaznaczanie w linii (V)
+    	Visual blockwise - zaznaczanie w bloku/prostokącie (ctrl + V)
+  	Command-Line - tryb wpisywania komend/poleceń (:)
+
+Podstawowe czynności w VIMe:
+	u - undo 
+	CTRL + R - redo 
+	:w - zapisz
+	:q - wyjdź
+	:wq/:x - zapisz i wyjdź
+	! - powoduje wymuszenie (:q! - wyjdź bez zapisywania)
+	:edit <nazwa pliku> - edytuj wskazany plik w nowym bufferze (będą otwarte 2 pliki)
+	
+Nawigacja w Vimie:
+	h j k l - left up down right
+	gg - przejdź do pierwszej linii
+	G - przejdź do ostatniej linii
+	:<liczba> - przejdź do wskazanej linii
+	$ - przejdź do końca linii
+	0 - przejdź do początku linii
+	b - przejdź do poprzedniego słowa
+	w - przejdź do kolejnego słowa
+
+Edytowanie tekstu w trybie Normal:
+	x - wytnij znak pod kursorem (przechodzi do schowka)
+	dw/db - usun kolejne/poprzednie słowo 
+	dd - usun całą linię	
+	yy - skopiuj całą linię
+	>> - tab w lewo
+	<< - tab w prawo
+	
+proces kopiowania/wycinania:
+	1. zaznacz fragment pliku używająć trybu Visual (V/Ctrl + V)
+	2. aby skopiować zaznaczony fragment naciśnij y, aby wyciąć naciśnij x
+	3. aby wkleić tekst, wyjdź z trybu Visual (ESC), następnie aby:
+		wkleić po kursorze, nacisnij p, 
+		wkleić przed kursorem, naciśnij P (shift + P),  
+wyszukiwanie tekstu:
+	1. /<szukana fraza> (przeszukuje w przód) ?<szukana fraza> (przeszukuje w tył) 
+	2. aby znaleźć kolejne wystąpienie, nacisnij n
+	3. aby znaleźć poprzednie wystąpienie, nacisnij N (shift + n)
+	bonus: można najechać na słowo, naciśnięcie */# spowoduje automatyczne znalezienie kolejnego wystąpienia w przód/tył
+	bonus: :set ignorecase spowoduje ignorowanie dużych liter
+
+wyszukaj i zamień: 
+	już nie tak prosto, trzeba przerobić regex: 
+		:[range]s/{pattern}/{string}/[flags] [count]
+	vim przeszukuje wszystkie linie z [range] (range: 0,20 przeszuka tylko linie od 0 do 20, .,$ spowoduje przeszukanie od obecnej linii do końca, .,+4 spowoduje zmianę w kolejnych liniach, % spowoduje zmianę w całym bufferze)
+	w poszukiwaniu wzorca {pattern} i zmieni go na {string}
+	[flags] odpowiada a flagi, przykładowo flaga g spowoduje zmianę wszystkich słów w linii
+		flaga c powoduje wymaganie potwierdzenia zmiany 
+
+
+buffer - plik otwarty do edycji, VIM przechowuje je w pamięci, kiedy otwieramy nowe. 
+:e <nazwa pliku> - tworzy nowy buffer i ustawia go jako aktywny
+:badd <nazwa pliku> - tworzy nowy buffer, ale tworzy go w tle
+:bdelete <nazwa pliku>/:bd <nazwa pliku> - usuń buffer
+:buffer <nazwa pliku>/ :b <nazwa pliku> - zmienia aktywny buffer 
+:bnext/:bn - przełącz na kolejny buffer (do przodu)
+:bprevious/:bp - przełącz na kolejny buffer (do tyłu)
+:bfirst/:bf - skocz do pierwszego buffera
+:blast/:bl - skocz do ostatniego buffera
+:split <nazwa pliku>/:sp <nazwa pliku> - dzieli ekran horyzontalnie, otwierając plik w nowym bufferze
+:vsplit <nazwa pliku>/:vs <nazwa pliku> - dzieli ekran wertykalnie, otwierając plik w nowym bufferze
+:ls/:files/:buffers - sprawdź otwarte pliki (buffery)
+flagi bufferów: 
+	% - buffer otwarty
+	a - buffer aktywny
+	# - buffer ostatnio edytowany
+
+foldy - 
+	zf - stwórz fold
+	zo - otwórz fold
+	zc - zamknij fold
+	zr/zm - zmniejsz/zwieksz "poziom foldowania" w pliku
+
+.vimrc
+Vim posiada pluginy, napisane w vimscript. 
+Plikiem konfiguracyjnym vim'a jest .vimrc (UBUNTU 22.04: /usr/share/vim/vimrc) (:e $MYVIMRC)
+
+źródła: 
+https://www.freecodecamp.org/news/vim-beginners-guide/
+https://linuxhandbook.com/vim-buffers/
+https://www.freecodecamp.org/news/vimrc-configuration-guide-customize-your-vim-editor/
+https://www.cyberciti.biz/faq/find-a-word-in-vim-or-vi-text-editor/
+https://linuxize.com/post/vim-find-replace/
+https://www.freecodecamp.org/news/vim-key-bindings-reference/
